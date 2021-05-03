@@ -1,4 +1,4 @@
-# FoodCal
+# Foories
 Lorem ipsum dolor sit amet.
 
 ## Description
