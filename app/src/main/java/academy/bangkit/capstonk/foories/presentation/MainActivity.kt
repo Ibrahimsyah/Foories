@@ -1,5 +1,6 @@
-package academy.bangkit.capstonk.foories
+package academy.bangkit.capstonk.foories.presentation
 
+import academy.bangkit.capstonk.foories.R
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 

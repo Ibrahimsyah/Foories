@@ -1,6 +1,5 @@
 package academy.bangkit.capstonk.foories.presentation
 
-import academy.bangkit.capstonk.foories.MainActivity
 import academy.bangkit.capstonk.foories.core.config.Constants
 import academy.bangkit.capstonk.foories.databinding.ActivitySplashScreenBinding
 import academy.bangkit.capstonk.foories.presentation.onboarding.OnboardingScreenActivity

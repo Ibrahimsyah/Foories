@@ -138,6 +138,7 @@
             app:layout_constraintTop_toBottomOf="@id/label_gender">
 
             <RadioButton
+                android:id="@+id/male"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginVertical="0dp"
@@ -147,6 +148,7 @@
                 android:textSize="14sp" />
 
             <RadioButton
+                android:id="@+id/female"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginVertical="0dp"

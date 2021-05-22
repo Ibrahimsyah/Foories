@@ -1,10 +1,11 @@
 package academy.bangkit.capstonk.foories.core.domain.usecase
 
 import academy.bangkit.capstonk.foories.core.domain.model.User
-import academy.bangkit.capstonk.foories.core.domain.repository.IScreeningRepository
+import academy.bangkit.capstonk.foories.core.domain.repository.IFooriesRepository
+import android.util.Log
 
-class ScreeningInteractor(val repository: IScreeningRepository) : ScreeningUseCase {
+class ScreeningInteractor(val repository: IFooriesRepository) : ScreeningUseCase {
     override fun getUserCalories(user: User) {
-        TODO("Not yet implemented")
+        Log.d("hehe", user.toString())
     }
 }
