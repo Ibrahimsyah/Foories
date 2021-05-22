@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Foories</string>
+    <string name="onboarding_picture">Onboarding Picture</string>
+    <string name="dot">dot</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
 </resources>

@@ -3,7 +3,15 @@
     <style name="Theme.Foories" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/text_white</item>
+        <item name="android:textColor">@color/text_black</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
     </style>
 
+    <style name="OnboardingTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/text_white</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:statusBarColor">@color/text_white</item>
+    </style>
 </resources>
