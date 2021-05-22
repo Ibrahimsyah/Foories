@@ -1,7 +1,11 @@
 package academy.bangkit.capstonk.foories.presentation.onboarding
 
 import academy.bangkit.capstonk.foories.R
+import academy.bangkit.capstonk.foories.core.config.Constants
 import academy.bangkit.capstonk.foories.databinding.ActivityOnboardingScreenBinding
+import academy.bangkit.capstonk.foories.presentation.screening.ScreeningActivity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,9 +40,15 @@ class OnboardingScreenActivity : AppCompatActivity() {
         binding.viewpager.adapter = viewPagerAdapter
         binding.btnNext.setOnClickListener {
             with(binding.viewpager) {
+                val currentItem = this.currentItem
+                if (currentItem == onboardingData.size - 1) {
+                    setOnboardingDone()
+                }
                 setCurrentItem(currentItem + 1, true)
             }
         }
+
+        binding.btnSkip.setOnClickListener { setOnboardingDone() }
 
         with(binding.rvDot) {
             layoutManager = LinearLayoutManager(
@@ -58,5 +68,15 @@ class OnboardingScreenActivity : AppCompatActivity() {
                     if (position == onboardingData.size - 1) "Get Started" else "Next"
             }
         })
+    }
+
+    private fun setOnboardingDone() {
+        val prefs = getSharedPreferences(Constants.PREFS, Context.MODE_PRIVATE)
+        prefs.edit().apply {
+            putBoolean(Constants.ONBOARDING_PREF, true)
+            apply()
+        }
+        startActivity(Intent(this, ScreeningActivity::class.java))
+        finish()
     }
 }

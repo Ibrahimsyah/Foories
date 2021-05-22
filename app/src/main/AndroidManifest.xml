@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Foories"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".presentation.screening.ScreeningActivity"
+            android:theme="@style/OnboardingTheme" />
+        <activity
             android:name=".presentation.onboarding.OnboardingScreenActivity"
             android:theme="@style/OnboardingTheme" />
         <activity android:name=".presentation.SplashScreenActivity">

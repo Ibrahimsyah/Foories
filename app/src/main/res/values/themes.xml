@@ -13,5 +13,7 @@
         <item name="colorOnPrimary">@color/text_white</item>
         <item name="android:textColor">@color/text_black</item>
         <item name="android:statusBarColor">@color/text_white</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
     </style>
 </resources>
