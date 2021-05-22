@@ -15,4 +15,8 @@
     <string name="gender">Gender</string>
     <string name="let_s_find_out_your_daily_calories_needs">Let\'s find out your daily calories needs</string>
     <string name="screening">Screening</string>
+    <string name="check_mark">check mark</string>
+    <string name="success">Success</string>
+    <string name="calorie_information">Your daily calorie need is %1$d KCal per day. Keep your daily calorie consumption below the threshold using Foories!</string>
+    <string name="start">start</string>
 </resources>

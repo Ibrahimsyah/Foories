@@ -1,8 +1,12 @@
 package academy.bangkit.capstonk.foories.presentation.screening
 
 import academy.bangkit.capstonk.foories.R
+import academy.bangkit.capstonk.foories.core.config.Constants
 import academy.bangkit.capstonk.foories.core.domain.model.User
 import academy.bangkit.capstonk.foories.databinding.ActivityScreeningBinding
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ScreeningActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScreeningBinding
     private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var pref: SharedPreferences
 
     private val viewModel: ScreeningViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +24,7 @@ class ScreeningActivity : AppCompatActivity() {
         binding = ActivityScreeningBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        pref = getSharedPreferences(Constants.PREFS, Context.MODE_PRIVATE)
         val activityData = ActivityCategory.generateData()
         categoryAdapter = CategoryAdapter(activityData)
         with(binding.rvActivity) {
@@ -48,7 +54,16 @@ class ScreeningActivity : AppCompatActivity() {
                     age,
                     activityId
                 )
-                viewModel.getUserCalories(user)
+                viewModel.getUserCalories(user).observe(this, {
+                    pref.edit().apply {
+                        putString(Constants.USER_FULL_NAME, user.name)
+                        putInt(Constants.USER_CALORIE, it.calorie.toInt())
+                        putBoolean(Constants.SCREENING_PREF, true)
+                        apply()
+                    }
+                    startActivity(Intent(this, SuccessActivity::class.java))
+                    finish()
+                })
             }
         }
     }
