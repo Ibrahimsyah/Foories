@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class DotAdapter(val size: Int) : RecyclerView.Adapter<DotAdapter.DotViewHolder>() {
+class DotAdapter(private val size: Int) : RecyclerView.Adapter<DotAdapter.DotViewHolder>() {
     var currentPosition = 0
         set(position) {
             this.notifyDataSetChanged()
             field = position
         }
 
-    inner class DotViewHolder(val binding: ItemDotBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class DotViewHolder(private val binding: ItemDotBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
             val dotDrawable =
                 if (position == currentPosition) R.drawable.dot_filled else R.drawable.dot

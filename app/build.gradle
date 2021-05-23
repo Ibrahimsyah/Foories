@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -37,6 +38,9 @@ android {
 }
 
 dependencies {
+    def retrofit_version = "2.9.0"
+    def room_version = "2.3.0"
+
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
     //Coroutine
@@ -49,8 +53,12 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.2.3"
 
     //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'
