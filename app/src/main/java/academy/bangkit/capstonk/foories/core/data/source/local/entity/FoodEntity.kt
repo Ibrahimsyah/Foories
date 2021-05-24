@@ -7,7 +7,7 @@ import java.util.*
 @Entity(tableName = "foods")
 data class FoodEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     val name: String,
     val calories: Double,
     val addedAt: Date

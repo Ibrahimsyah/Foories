@@ -22,6 +22,7 @@
     <string name="welcome">Welcome</string>
     <string name="calorie_percentage">%1$d %%</string>
     <string name="calorie_progress">%1$d/%2$d KCal</string>
+    <string name="calorie_label">%1$d KCal</string>
     <string name="add_food">Add Food</string>
     <string name="today_s_food">Today\'s Food</string>
     <string name="please_wait">Please Wait</string>

@@ -12,5 +12,8 @@ interface FooriesDao {
     fun insertFood(foodEntity: FoodEntity)
 
     @Query("select * from foods where addedAt = date('now')")
-    fun getTodayFood(): LiveData<List<FoodEntity>>
+    fun getTodayFoods(): LiveData<List<FoodEntity>>
+
+    @Query("select sum(calories) from foods where addedAt = date('now')")
+    fun getTodayTotalCalories(): LiveData<Double>
 }
