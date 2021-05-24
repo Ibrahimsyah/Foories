@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.fabAdd.setOnClickListener {
-            //TODO: Change this to i
+            //TODO: Change this to intent to camera
             val food = Food("Food", 200.0, Date())
             mainViewModel.insertFood(food)
             Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show()
