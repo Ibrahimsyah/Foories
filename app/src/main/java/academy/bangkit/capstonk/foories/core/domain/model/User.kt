@@ -6,5 +6,5 @@ data class User(
     val weight: Double,
     val height: Double,
     val age: Int,
-    val activityCategory: Int
+    val activityType: Int
 )

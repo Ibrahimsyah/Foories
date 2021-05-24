@@ -3,7 +3,7 @@ package academy.bangkit.capstonk.foories.presentation.screening
 import academy.bangkit.capstonk.foories.R
 import academy.bangkit.capstonk.foories.core.config.Constants
 import academy.bangkit.capstonk.foories.databinding.ActivitySuccessBinding
-import academy.bangkit.capstonk.foories.presentation.MainActivity
+import academy.bangkit.capstonk.foories.presentation.main.MainActivity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle

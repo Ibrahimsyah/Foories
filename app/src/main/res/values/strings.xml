@@ -19,4 +19,5 @@
     <string name="success">Success</string>
     <string name="calorie_information">Your daily calorie need is %1$d KCal per day. Keep your daily calorie consumption below the threshold using Foories!</string>
     <string name="start">start</string>
+    <string name="welcome">Welcome</string>
 </resources>

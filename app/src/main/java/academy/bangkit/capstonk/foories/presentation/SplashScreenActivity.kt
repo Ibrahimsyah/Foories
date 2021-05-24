@@ -2,6 +2,7 @@ package academy.bangkit.capstonk.foories.presentation
 
 import academy.bangkit.capstonk.foories.core.config.Constants
 import academy.bangkit.capstonk.foories.databinding.ActivitySplashScreenBinding
+import academy.bangkit.capstonk.foories.presentation.main.MainActivity
 import academy.bangkit.capstonk.foories.presentation.onboarding.OnboardingScreenActivity
 import academy.bangkit.capstonk.foories.presentation.screening.ScreeningActivity
 import android.content.Context

@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity(tableName = "foods")
-data class Food(
+data class FoodEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,

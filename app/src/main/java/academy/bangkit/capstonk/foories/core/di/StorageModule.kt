@@ -1,5 +1,6 @@
 package academy.bangkit.capstonk.foories.core.di
 
+import academy.bangkit.capstonk.foories.core.config.Constants
 import academy.bangkit.capstonk.foories.core.data.source.local.database.FooriesDatabase
 import androidx.room.Room
 import org.koin.android.ext.koin.androidContext
@@ -9,7 +10,7 @@ val storageModule = module {
     single {
         Room.databaseBuilder(
             androidContext(),
-            FooriesDatabase::class.java, "foories_db"
+            FooriesDatabase::class.java, Constants.DB_NAME
         ).build()
     }
 
