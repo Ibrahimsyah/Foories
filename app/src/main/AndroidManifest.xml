@@ -16,13 +16,13 @@
         tools:ignore="AllowBackup">
         <activity
             android:name=".presentation.screening.SuccessActivity"
-            android:theme="@style/OnboardingTheme" />
+            android:theme="@style/MainTheme" />
         <activity
             android:name=".presentation.screening.ScreeningActivity"
-            android:theme="@style/OnboardingTheme" />
+            android:theme="@style/MainTheme" />
         <activity
             android:name=".presentation.onboarding.OnboardingScreenActivity"
-            android:theme="@style/OnboardingTheme" />
+            android:theme="@style/MainTheme" />
         <activity
             android:name=".presentation.SplashScreenActivity"
             android:theme="@style/SplashScreenTheme">
@@ -32,7 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.main.MainActivity" />
+        <activity
+            android:name=".presentation.main.MainActivity"
+            android:theme="@style/MainTheme" />
     </application>
 
 </manifest>

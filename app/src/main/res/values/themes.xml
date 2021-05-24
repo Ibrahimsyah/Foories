@@ -12,7 +12,7 @@
         <item name="android:statusBarColor">@color/primary</item>
     </style>
 
-    <style name="OnboardingTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="MainTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowLightStatusBar">true</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/text_white</item>

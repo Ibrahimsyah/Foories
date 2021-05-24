@@ -20,4 +20,10 @@
     <string name="calorie_information">Your daily calorie need is %1$d KCal per day. Keep your daily calorie consumption below the threshold using Foories!</string>
     <string name="start">start</string>
     <string name="welcome">Welcome</string>
+    <string name="calorie_percentage">%1$d %%</string>
+    <string name="calorie_progress">%1$d/%2$d KCal</string>
+    <string name="add_food">Add Food</string>
+    <string name="today_s_food">Today\'s Food</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="it_s_too_quite_here_add_your_first_food">It’s Too Quite here. Add your first food</string>
 </resources>
