@@ -40,15 +40,14 @@ class MainActivity : AppCompatActivity() {
             val percentage = (calorie * 100 / userCalorie)
             binding.userName.text = userName
             binding.percentage.text = getString(R.string.calorie_percentage, percentage)
-            binding.progressIndicator.progress = (0.75 * percentage).toInt()
             binding.calorieProgress.text =
                 getString(R.string.calorie_progress, calorie, userCalorie)
-            if (percentage >= 100) {
-                binding.progressIndicator.progress = 75
-                val color = ContextCompat.getColor(this, R.color.light_red)
-                binding.percentage.setTextColor(color)
-                binding.progressIndicator.setIndicatorColor(color)
-            }
+            val progress = if (percentage >= 100) 75 else (0.75 * percentage).toInt()
+            val colorId = if (percentage >= 100) R.color.light_red else R.color.primary
+            val color = ContextCompat.getColor(this, colorId)
+            binding.progressIndicator.progress = progress
+            binding.percentage.setTextColor(color)
+            binding.progressIndicator.setIndicatorColor(color)
         })
 
         mainViewModel.getUserTodayFoods().observe(this, {
