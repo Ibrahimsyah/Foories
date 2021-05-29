@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "896924118997",
+    "project_id": "foories-c3c25",
+    "storage_bucket": "foories-c3c25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896924118997:android:98ef38630158a581e9975c",
+        "android_client_info": {
+          "package_name": "academy.bangkit.capstonk.foories"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896924118997-ao01nsm81d4j0ojh49m49pkcqfc40805.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "academy.bangkit.capstonk.foories",
+            "certificate_hash": "073a570cf4264fe34818236e6fe8916bdc4316b9"
+          }
+        },
+        {
+          "client_id": "896924118997-29n3gmtnned24n4c3tjfir3nlh57pn96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJkbwwjeh2PdWZU_u_DxlWopNEwHxffRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896924118997-29n3gmtnned24n4c3tjfir3nlh57pn96.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -31,5 +31,10 @@
       <option name="name" value="maven" />
       <option name="url" value="https://jitpack.io" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="ossrh-snapshot" />
+      <option name="name" value="ossrh-snapshot" />
+      <option name="url" value="http://oss.sonatype.org/content/repositories/snapshots" />
+    </remote-repository>
   </component>
 </project>

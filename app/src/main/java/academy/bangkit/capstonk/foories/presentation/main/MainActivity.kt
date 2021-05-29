@@ -9,14 +9,12 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.database.Cursor
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -53,14 +51,6 @@ class MainActivity : AppCompatActivity() {
         val userName = pref.getString(Constants.USER_FULL_NAME, "")
         val userCalorie = pref.getInt(Constants.USER_CALORIE, 0)
 
-        Dexter.withContext(this)
-            .withPermissions(
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            .withListener(permissionListener).check()
-
         with(binding.rvFood) {
             layoutManager = LinearLayoutManager(this@MainActivity)
             setHasFixedSize(true)
@@ -88,15 +78,30 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.fabAdd.setOnClickListener {
-            takePhotoFromCamera()
+            checkPermission(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
+                    takePhotoFromCamera()
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    p0: MutableList<PermissionRequest>?,
+                    p1: PermissionToken?
+                ) {
+                    val message = "Camera must be allowed"
+                    Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 
-    private fun getImageFromGallery() {
-        val intent = Intent();
-        intent.type = "image/*";
-        intent.action = Intent.ACTION_GET_CONTENT;
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_GALLERY);
+    private fun checkPermission(permissionListener: MultiplePermissionsListener) {
+        Dexter.withContext(this)
+            .withPermissions(
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            .withListener(permissionListener).check()
     }
 
     @SuppressLint("QueryPermissionsNeeded")
@@ -111,7 +116,7 @@ class MainActivity : AppCompatActivity() {
                 photoFile?.also {
                     val photoURI: Uri = FileProvider.getUriForFile(
                         this,
-                        "com.example.android.fileprovider",
+                        "academy.bangkit.capstonk.foories.fileprovider",
                         it
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
@@ -127,17 +132,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, DetectorActivity::class.java)
             intent.putExtra(DetectorActivity.IMAGE_PATH, photoPath)
             startActivity(intent)
-        } else if (requestCode == PICK_GALLERY && resultCode == RESULT_OK) {
-            val uri = data?.data
-            val result = uri as Bitmap
-            val intent = Intent(this, DetectorActivity::class.java)
-            intent.putExtra(DetectorActivity.IMAGE_PATH, result)
-            startActivity(intent)
         }
     }
 
     private fun createImageFile(): File {
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CANADA).format(Date())
         val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(
             "JPEG_${timeStamp}_", /* prefix */
@@ -145,17 +144,6 @@ class MainActivity : AppCompatActivity() {
             storageDir /* directory */
         ).apply {
             photoPath = absolutePath
-        }
-    }
-
-    private object permissionListener : MultiplePermissionsListener {
-        override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
-        }
-
-        override fun onPermissionRationaleShouldBeShown(
-            p0: MutableList<PermissionRequest>?,
-            p1: PermissionToken?
-        ) {
         }
     }
 }

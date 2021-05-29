@@ -54,7 +54,6 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="32dp"
-                android:progress="0"
                 android:rotation="225"
                 app:indicatorSize="180dp"
                 app:layout_constraintLeft_toLeftOf="parent"

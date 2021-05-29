@@ -19,9 +19,10 @@ class DetectionResultAdapter(private val data: List<DetectionResult>) :
                 foodName.text = detection.foodName
                 foodConfidence.text = itemView.context.getString(
                     R.string.confidence_percentage,
-                    detection.confidence?.toInt()
+                    detection.confidence.toInt()
                 )
-                foodCalorie.text = itemView.context.getString(R.string.calorie_label, detection.calorie?.toInt())
+                foodCalorie.text =
+                    itemView.context.getString(R.string.calorie_label, detection.calorie.toInt())
                 radio.isChecked = selectedIndex == adapterPosition
                 radio.setOnClickListener { onItemClicked() }
             }

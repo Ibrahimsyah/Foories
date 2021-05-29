@@ -5,6 +5,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -75,8 +77,11 @@ dependencies {
     implementation 'androidx.exifinterface:exifinterface:1.3.2'
 
     //Tensorflow
-    implementation 'org.tensorflow:tensorflow-android:1.13.1'
-    implementation 'org.tensorflow:tensorflow-lite:2.4.0'
+    compile(name:'tensorflow-lite', ext:'aar')
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:28.0.1')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'
