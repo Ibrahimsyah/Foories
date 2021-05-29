@@ -1,0 +1,14 @@
+bakso
+dessert
+egg
+french_fries
+fried_rice
+hamburger
+meat
+pizza
+sate
+soto
+soup
+spaghetti
+sushi
+vegfruit

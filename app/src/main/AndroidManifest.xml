@@ -5,6 +5,15 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -14,6 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Foories"
         tools:ignore="AllowBackup">
+        <activity android:name=".presentation.detector.DetectorActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.screening.SuccessActivity"
             android:theme="@style/MainTheme" />
@@ -35,6 +45,16 @@
         <activity
             android:name=".presentation.main.MainActivity"
             android:theme="@style/MainTheme" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

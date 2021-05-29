@@ -1,6 +1,6 @@
 package academy.bangkit.capstonk.foories.core.data
 
-import academy.bangkit.capstonk.foories.core.Mapper
+import academy.bangkit.capstonk.foories.core.util.Mapper
 import academy.bangkit.capstonk.foories.core.data.source.local.LocalDataSource
 import academy.bangkit.capstonk.foories.core.data.source.remote.RemoteDataSource
 import academy.bangkit.capstonk.foories.core.domain.model.Calories
