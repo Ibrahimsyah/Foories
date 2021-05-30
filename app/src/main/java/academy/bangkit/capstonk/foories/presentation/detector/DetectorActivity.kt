@@ -1,7 +1,7 @@
 package academy.bangkit.capstonk.foories.presentation.detector
 
-import academy.bangkit.capstonk.foories.core.util.Mapper
 import academy.bangkit.capstonk.foories.core.ui.LoadingDialog
+import academy.bangkit.capstonk.foories.core.util.Mapper
 import academy.bangkit.capstonk.foories.databinding.ActivityDetectorBinding
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -29,7 +29,9 @@ class DetectorActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadingDialog = LoadingDialog(this)
-        bottomSheetDialog = BottomSheetDialog.getInstance(supportFragmentManager)
+        bottomSheetDialog = BottomSheetDialog.getInstance(supportFragmentManager) {
+            finish()
+        }
 
         setSupportActionBar(binding.toolbar)
         val imagePath = intent.getStringExtra(IMAGE_PATH) as String
