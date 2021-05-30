@@ -34,7 +34,7 @@ const addCalHandler = (request, h) => {
   }
 
   const calories = (gender === 'male') ? ((10 * weight) + (6.25 * height) - (5 * age) + 5) *
-  activityValue : ((10 * weight) + (6.25 * height) - (5 * age) - 161) * activityValue;
+    activityValue : ((10 * weight) + (6.25 * height) - (5 * age) - 161) * activityValue;
 
   if (!gender) {
     const response = h.response({
@@ -75,5 +75,20 @@ const addCalHandler = (request, h) => {
   return response;
 };
 
-module.exports = {addCalHandler};
+const detectFoodsCalorie = (req, res) => {
+  const {foods = []} = req.payload || {};
+  const foodsCalories = foods.map((food) => {
+    const foodCalory = cal.find((foodCalory) => foodCalory.food == food.name) || {};
+    return {
+      ...food,
+      calorie: foodCalory.calorie || 0,
+    };
+  });
+  return res.response({
+    status: 'success',
+    foodsCalories,
+  });
+};
+
+module.exports = {addCalHandler, detectFoodsCalorie};
 

@@ -25,3 +25,4 @@ insert into food values (1,'bakso 1 mangkok',283),
 
 select * from food
 
+[{}]
