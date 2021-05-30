@@ -2,6 +2,7 @@
 /* eslint linebreak-style: ["error", "windows"]*/
 const {nanoid} = require('nanoid');
 const cal = require('./cal');
+const foodsCaloriesData = require('./foodsCalories')
 
 const addCalHandler = (request, h) => {
   const {gender,
@@ -78,7 +79,7 @@ const addCalHandler = (request, h) => {
 const detectFoodsCalorie = (req, res) => {
   const {foods = []} = req.payload || {};
   const foodsCalories = foods.map((food) => {
-    const foodCalory = cal.find((foodCalory) => foodCalory.food == food.name) || {};
+    const foodCalory = foodsCaloriesData.find((foodCalory) => foodCalory.food == food.name) || {};
     return {
       ...food,
       calorie: foodCalory.calorie || 0,
