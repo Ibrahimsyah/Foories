@@ -1,18 +1,18 @@
 package academy.bangkit.capstonk.foories.presentation.detector
 
 import academy.bangkit.capstonk.foories.core.brain.ImageClassifier
-import academy.bangkit.capstonk.foories.core.brain.Result
 import academy.bangkit.capstonk.foories.core.data.source.remote.entity.FoodCaloriesPayload
 import academy.bangkit.capstonk.foories.core.data.source.remote.entity.FoodPayload
 import academy.bangkit.capstonk.foories.core.domain.model.DetectionResult
 import academy.bangkit.capstonk.foories.core.domain.model.Food
 import academy.bangkit.capstonk.foories.core.domain.repository.IFooriesRepository
+import academy.bangkit.capstonk.foories.core.util.Mapper
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -28,7 +28,6 @@ class DetectorViewModel(
         val result = MutableLiveData<List<DetectionResult>>()
         viewModelScope.launch {
             loading.postValue(true)
-            delay(500)
             val response = classifier.recognizeFlow(bitmap).first()
             val list : MutableList<FoodPayload> = mutableListOf()
             response.forEach {
@@ -40,17 +39,14 @@ class DetectorViewModel(
 
             val payload = FoodCaloriesPayload(list)
             val sendApi = repository.detectFoodCalories(payload)
-            println(list.toString())
-            println(payload.toString())
-            println(sendApi.toString())
-
             if (sendApi.foodsCalories.isNullOrEmpty()) {
-                loading.postValue(false)
                 result.postValue(mutableListOf())
             } else {
-                loading.postValue(false)
-                result.postValue(sendApi.foodsCalories)
+                Log.d("hehe", "${sendApi.foodsCalories}")
+                val formattedResult = Mapper.reformatDetectionResult(sendApi.foodsCalories)
+                result.postValue(formattedResult)
             }
+            loading.postValue(false)
         }
         return result
     }

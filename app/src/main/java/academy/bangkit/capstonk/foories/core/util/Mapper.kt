@@ -1,6 +1,5 @@
 package academy.bangkit.capstonk.foories.core.util
 
-import academy.bangkit.capstonk.foories.core.brain.Result
 import academy.bangkit.capstonk.foories.core.data.source.local.entity.FoodEntity
 import academy.bangkit.capstonk.foories.core.data.source.remote.response.CalorieResponse
 import academy.bangkit.capstonk.foories.core.domain.model.Calories
@@ -21,12 +20,13 @@ object Mapper {
         return FoodEntity(name = food.name, calories = food.calories, addedAt = food.addedAt)
     }
 
-    fun detectionResultToDomain(list: List<Result>): List<DetectionResult> {
-        return list.map {
-            val confidence = it.confidence ?: 0f
-            val foodName = it.title ?: ""
-            val optimizedName = foodName.capitalizeWords("_")
-            DetectionResult(optimizedName, confidence * 100.0, 1000.0)
+    fun reformatDetectionResult(list: List<DetectionResult>): List<DetectionResult> {
+        return list.map { result ->
+            DetectionResult(
+                result.name.capitalizeWords("_"),
+                result.confidence * 100,
+                result.calorie
+            )
         }
     }
 

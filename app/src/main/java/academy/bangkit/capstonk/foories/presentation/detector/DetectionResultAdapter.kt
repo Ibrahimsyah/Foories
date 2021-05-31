@@ -19,7 +19,7 @@ class DetectionResultAdapter(private val data: List<DetectionResult>) :
                 foodName.text = detection.name
                 foodConfidence.text = itemView.context.getString(
                     R.string.confidence_percentage,
-                    (detection.confidence * 100).toInt()
+                    detection.confidence.toInt()
                 )
                 foodCalorie.text =
                     itemView.context.getString(R.string.calorie_label, detection.calorie.toInt())
