@@ -29,7 +29,7 @@ class DetectorActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadingDialog = LoadingDialog(this)
-        bottomSheetDialog = BottomSheetDialog.getInstance(supportFragmentManager) {
+        bottomSheetDialog = BottomSheetDialog.getInstance(supportFragmentManager, viewModel) {
             finish()
         }
 
@@ -61,14 +61,18 @@ class DetectorActivity : AppCompatActivity() {
         })
 
         viewModel.detectImage(bitmap).observe(this, {
-            val mappedResult = Mapper.detectionResultToDomain(it)
-            bottomSheetDialog.showResult(mappedResult) { foodIndex ->
-                val selectedFood = Mapper.detectionResultToFood(mappedResult[foodIndex])
-                viewModel.saveFood(selectedFood)
-                Toast.makeText(this, "Food Added", Toast.LENGTH_SHORT).show()
-                finish()
-                true
+            if (it.isEmpty()) {
+                Toast.makeText(this, "Can't send to server", Toast.LENGTH_SHORT).show()
+            } else {
+                bottomSheetDialog.showResult(it) { foodIndex ->
+                    val selectedFood = Mapper.detectionResultToFood(it[foodIndex])
+                    viewModel.saveFood(selectedFood)
+                    Toast.makeText(this, "Food Added", Toast.LENGTH_SHORT).show()
+                    finish()
+                    true
+                }
             }
+
         })
     }
 
