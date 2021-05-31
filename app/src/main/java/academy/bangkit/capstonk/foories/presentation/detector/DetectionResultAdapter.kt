@@ -16,10 +16,10 @@ class DetectionResultAdapter(private val data: List<DetectionResult>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(detection: DetectionResult) {
             with(binding) {
-                foodName.text = detection.foodName
+                foodName.text = detection.name
                 foodConfidence.text = itemView.context.getString(
                     R.string.confidence_percentage,
-                    detection.confidence.toInt()
+                    (detection.confidence * 100).toInt()
                 )
                 foodCalorie.text =
                     itemView.context.getString(R.string.calorie_label, detection.calorie.toInt())

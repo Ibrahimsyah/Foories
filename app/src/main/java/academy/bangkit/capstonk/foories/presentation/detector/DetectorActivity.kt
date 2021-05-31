@@ -72,7 +72,6 @@ class DetectorActivity : AppCompatActivity() {
                     true
                 }
             }
-
         })
     }
 

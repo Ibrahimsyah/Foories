@@ -37,7 +37,6 @@ class FooriesRepository(
     }
 
     override suspend fun detectFoodCalories(foodCaloriesPayload: FoodCaloriesPayload): DetectionResponse {
-        val result = remoteDataSource.detectFoodCaloriesWorth(foodCaloriesPayload)
-        return return result
+        return remoteDataSource.detectFoodCaloriesWorth(foodCaloriesPayload)
     }
 }

@@ -34,12 +34,15 @@ class DetectorViewModel(
             response.forEach {
                 list.add(FoodPayload(
                     name = it.title,
-                    confidence = it.confidence
+                    confidence = it.confidence?.toDouble()
                 ))
             }
 
-            val payload = FoodCaloriesPayload(foods = list)
+            val payload = FoodCaloriesPayload(list)
             val sendApi = repository.detectFoodCalories(payload)
+            println(list.toString())
+            println(payload.toString())
+            println(sendApi.toString())
 
             if (sendApi.foodsCalories.isNullOrEmpty()) {
                 loading.postValue(false)

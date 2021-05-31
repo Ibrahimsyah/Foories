@@ -32,6 +32,6 @@ object Mapper {
 
     fun detectionResultToFood(detectionResult: DetectionResult): Food {
         val dateNow = Date()
-        return Food(detectionResult.foodName, detectionResult.calorie, dateNow)
+        return Food(detectionResult.name, detectionResult.calorie, dateNow)
     }
 }
