@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     companion object {
-        const val SPLASH_TIMEOUT_MILS = 1000L
+        const val SPLASH_TIMEOUT_MILS = 2000L
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
