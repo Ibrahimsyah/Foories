@@ -10,5 +10,5 @@ Foories not only can detect the food consumed and show the calories, but also ca
 ## Documentation for each learning path:
 
 - ## [🧮&nbsp;&nbsp;Machine Learning &rarr;](https://github.com/Ibrahimsyah/Foories/tree/ml)
-- ## [🤖&nbsp;&nbsp;Android Mobile Development &rarr;](https://github.com/Ibrahimsyah/Foories/tree/ml)
-- ## [🌥&nbsp;&nbsp;Cloud Computing &rarr;](https://github.com/Ibrahimsyah/Foories/tree/ml)
+- ## [🤖&nbsp;&nbsp;Android Mobile Development &rarr;](https://github.com/Ibrahimsyah/Foories/tree/android)
+- ## [🌥&nbsp;&nbsp;Cloud Computing &rarr;](https://github.com/Ibrahimsyah/Foories/tree/cloud)
