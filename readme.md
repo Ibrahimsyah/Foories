@@ -57,6 +57,7 @@ Foories use some library to support the functionality of the application
 
 ### Architecture
 Foories android application implements Clean Architecture combining with Model-View-ViewModel (MVVM) Pattern which is recommended by google and as a part of Android Jetpack. For illutration, you can see bellow
+
 ![ArchitectureImage](arch.png)
 
 ### Step to Reproduce
