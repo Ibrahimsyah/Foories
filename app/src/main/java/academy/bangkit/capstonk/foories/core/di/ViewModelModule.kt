@@ -9,5 +9,5 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { ScreeningViewModel(get()) }
     viewModel { MainViewModel(get()) }
-    viewModel { DetectorViewModel(get(), get()) }
+    viewModel { DetectorViewModel(get()) }
 }

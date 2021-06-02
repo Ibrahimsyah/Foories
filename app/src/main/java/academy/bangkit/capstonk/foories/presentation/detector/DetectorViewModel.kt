@@ -1,11 +1,10 @@
 package academy.bangkit.capstonk.foories.presentation.detector
 
-import academy.bangkit.capstonk.foories.core.brain.ImageClassifier
 import academy.bangkit.capstonk.foories.core.data.source.remote.entity.FoodCaloriesPayload
 import academy.bangkit.capstonk.foories.core.data.source.remote.entity.FoodPayload
 import academy.bangkit.capstonk.foories.core.domain.model.DetectionResult
 import academy.bangkit.capstonk.foories.core.domain.model.Food
-import academy.bangkit.capstonk.foories.core.domain.repository.IFooriesRepository
+import academy.bangkit.capstonk.foories.core.domain.usecase.DetectorUseCase
 import academy.bangkit.capstonk.foories.core.util.Mapper
 import android.graphics.Bitmap
 import android.util.Log
@@ -17,8 +16,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class DetectorViewModel(
-    private val classifier: ImageClassifier,
-    private val repository: IFooriesRepository
+    private val detectorInteractor: DetectorUseCase
 ) : ViewModel() {
     private val loading = MutableLiveData(false)
 
@@ -28,7 +26,7 @@ class DetectorViewModel(
         val result = MutableLiveData<List<DetectionResult>>()
         viewModelScope.launch {
             loading.postValue(true)
-            val response = classifier.recognizeFlow(bitmap).first()
+            val response = detectorInteractor.classifyImage(bitmap).first()
             val list : MutableList<FoodPayload> = mutableListOf()
             response.forEach {
                 list.add(FoodPayload(
@@ -38,11 +36,10 @@ class DetectorViewModel(
             }
 
             val payload = FoodCaloriesPayload(list)
-            val sendApi = repository.detectFoodCalories(payload)
+            val sendApi = detectorInteractor.detectFoodsCalorie(payload)
             if (sendApi.foodsCalories.isNullOrEmpty()) {
                 result.postValue(mutableListOf())
             } else {
-                Log.d("hehe", "${sendApi.foodsCalories}")
                 val formattedResult = Mapper.reformatDetectionResult(sendApi.foodsCalories)
                 result.postValue(formattedResult)
             }
@@ -53,12 +50,12 @@ class DetectorViewModel(
 
     fun saveFood(food: Food) {
         viewModelScope.launch {
-            repository.insertFood(food)
+            detectorInteractor.insertFood(food)
         }
     }
 
     override fun onCleared() {
         super.onCleared()
-        classifier.close()
+        detectorInteractor.closeClassifier()
     }
 }
