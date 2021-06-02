@@ -11,6 +11,10 @@ Proudly presented by Capstonks Team 📈
 - Train the model using transform learning with MobileNet feature extractor.
 - Plot the model performance graph.
 
+## Dataset
+
+Dataset can be found in [this drive.](https://drive.google.com/file/d/1-5Eosu193w4CfmCurC7Rj1obEk0lV-55/view?usp=sharing)
+
 ## Classes:
 
 There are 14 types of food to be classified:
