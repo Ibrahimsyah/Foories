@@ -42,7 +42,7 @@ Foories use some library to support the functionality of the application
 
 	Jetpack Library to handle in-app database
 	
-8. Dexter(6.2.2)
+8. Dexter (6.2.2)
 
 	Android permission library
 	
@@ -56,8 +56,8 @@ Foories use some library to support the functionality of the application
 
 
 ### Architecture
-Foories android application implements Model-View-ViewModel (MVVM) Architecture which is recommended by google and as a part of Android Jetpack
-
+Foories android application implements Clean Architecture combining with Model-View-ViewModel (MVVM) Pattern which is recommended by google and as a part of Android Jetpack. For illutration, you can see bellow
+![ArchitectureImage](toptal-blog-image-1543413671794-80993a19fea97477524763c908b50a7a.png)
 
 ### Step to Reproduce
 
