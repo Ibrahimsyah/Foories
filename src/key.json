@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bangkit-firestore",
+  "private_key_id": "b15ea92ef2d06451007805a940ea6d9ab4596400",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCzV/Pzo9jcJbFr\nkDjVfq2x4YtzDJ3AZorPQGZDvoeaj2PMbuoPdbQD0Tl7q2auC6VFPMSfz/k0qjVz\n0Ymqp1QsHb0QKBeH0xpToB/966tm/R2YKh6wMdhmEKlod9yQBDbWEDaZgmZQYAnH\nv/Yc5EnV712lYwFhmeyhZK0Fb0Bru+L8ApUMkG4arGFnTz368Aq5eb630UCR4mRj\ntgoTsfWK8/fTLuDZDl7PXjFDeeINIqkTU6qrWdeEVbwz7WbgkMu9DuDDklFl9qaE\n9CPDjXWrtbEGX0ikLqfy/y8kW40YbUIZ/+YUdVJHIOJBi0+M9LUUM9DTLSLAaxhD\n0IokQSz1AgMBAAECggEACPgrdZJKj0ASA9d+WtcaEse9SgS7LbCIiAhS1QKGFP8k\n4PLkdookIFNqH5BD82Jrt+8Wb7O0D/k58SVCpav2tA93XC5/zBriZIT2n07BD3E1\n9gftPvykiP4+VWuL4WavOLzY2OFCWAoQPdLmQ9hQWl29U5SEW4BE6xF2QcuoRNBX\nAWBqPVeaTcD77+QvdUhyGBQtP2Xu578z5uj07wUx4ZkGVTl9zRT7Y7TaW6GRWPX4\nc4EK2EFuMgo4Me0No3wrKKFPPCe3BkNGy7amsYhktdoipPSrUDBiUEdBuSGC5dY9\njaM0tIk8V+BYN/S7GVgsKXDDbtmqglGYnhLJDuEI4QKBgQDWhpM3eFFCIC+NPFI/\n1RPLNUA+ykCkIHvQOmbtOgKtx4AMhoOhR4BkajJ/p5L3jT++1ETXbx68ZND/Zn11\n+nd0FrOd6qF5NJ/fiTDgQNoEmSsGZidyRxtYisZW7fIE0OrjjA0/7oej81sAIdW2\nypuAYrcEwE9wc0kp/v5cM5uhGQKBgQDWBB/2oWgZn0PqM/yZ2fNPv01qt4CndGLi\nGcb9MZ7BhLC3PIqFRV4kNJIit+UsYNqn5g766kB8Z4Y6q1ad/PJRas3tyBL89KDe\nIQ/M2w5jYo8AZ0FsVcHcNBuiKPxrF9rUww00KXlJ9FPr8QhvYk+cjNzFcGAM9KHR\njV/gYfFaPQKBgQCYBWHJyz96JqjL41U92tdeB2xxko3gQQy8cMaDkbpYP6nkNmaN\nIchAYGlMwQmK19O2fWITcLFNO/xHIPADbOy9nWDHpX+sDrjEhcnXAN3+qDQvIrEN\ncIpWYnFPJOt+sjXh7lttVLFWY5u3KkLyd/1eK5YajdU9kNTmJ8dEu2Wr8QKBgCuy\nWehcWkno98/o32l2U7RzpdXlM7J9E/eANd3adMSkWASBqvK9EBSqWzAVhghCmkJv\nuZ1HmPUNmh1+gEfvrnYrLXKgSCg3tmTEMVqtW0m1hOcbLgN1mwhf50h7v9YJ39dT\nH+4Hjckoxr3Ez+kWFJUtOaJiaGocxLFpgSrqNIItAoGBANUFd075QTBZZ9UXu7dQ\nE1fDx7Hkn5y2XAjZaptAv+BOBNWrFdk2YBRYuYtbe29/46JI2Eg1sB7+FzU5lv8Z\n86vDb0hX551EoI9CKAIrDGr2Zlz+a44MdPXdXcitVXGhjxDmIlgkPIAsk/XlPoA/\nlCjEZ8fQwuKOinrLGIoRNblC\n-----END PRIVATE KEY-----\n",
+  "client_email": "bangkit-firestore@appspot.gserviceaccount.com",
+  "client_id": "108400142880502803361",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bangkit-firestore%40appspot.gserviceaccount.com"
+}

@@ -2,7 +2,8 @@
 /* eslint linebreak-style: ["error", "windows"]*/
 const {nanoid} = require('nanoid');
 const cal = require('./cal');
-const foodsCaloriesData = require('./foodsCalories')
+// const foodsCaloriesData = require('./foodsCalories');
+const listfood = require('./listfood');
 
 const addCalHandler = (request, h) => {
   const {gender,
@@ -58,6 +59,7 @@ const addCalHandler = (request, h) => {
   cal.push(newCal);
   console.log(newCal);
   console.log(cal);
+  console.log(listfood);
   const isSuccess = cal.filter((item) => item.id === id).length > 0;
   if (isSuccess) {
     const response = h.response({
@@ -76,20 +78,20 @@ const addCalHandler = (request, h) => {
   return response;
 };
 
-const detectFoodsCalorie = (req, res) => {
-  const {foods = []} = req.payload || {};
+const detectFoodsCalorie = (request, h) => {
+  const {foods = []} = request.payload || {};
   const foodsCalories = foods.map((food) => {
-    const foodCalory = foodsCaloriesData.find((foodCalory) => foodCalory.food == food.name) || {};
+    const foodCalory = listfood.find((foodCalory) => foodCalory.food == food.name) || {};
     return {
       ...food,
       calorie: foodCalory.calorie || 0,
     };
   });
-  return res.response({
+  console.log(listfood);
+  return h.response({
     status: 'success',
     foodsCalories,
   });
 };
 
 module.exports = {addCalHandler, detectFoodsCalorie};
-

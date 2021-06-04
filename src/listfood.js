@@ -1,5 +1,4 @@
 /* eslint linebreak-style: ["error", "windows"]*/
+const food = [];
 
-const cal = [];
-
-module.exports = cal;
+module.exports = food;
