@@ -5,6 +5,14 @@ const cal = require('./cal');
 // const foodsCaloriesData = require('./foodsCalories');
 const listfood = require('./listfood');
 
+// Initialize Firestore
+const admin = require('firebase-admin');
+const serviceAccount = require('./key.json');
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+const db = admin.firestore();
+
 const addCalHandler = (request, h) => {
   const {gender,
     weight,
@@ -78,7 +86,13 @@ const addCalHandler = (request, h) => {
   return response;
 };
 
-const detectFoodsCalorie = (request, h) => {
+const detectFoodsCalorie = async (request, h) => {
+  const query = db.collection('food');
+  const snapshot = await query.orderBy('food').get();
+  snapshot.docs.forEach((doc) => {
+  // console.log(doc.data());
+    listfood.push(doc.data());
+  });
   const {foods = []} = request.payload || {};
   const foodsCalories = foods.map((food) => {
     const foodCalory = listfood.find((foodCalory) => foodCalory.food == food.name) || {};
@@ -94,4 +108,20 @@ const detectFoodsCalorie = (request, h) => {
   });
 };
 
-module.exports = {addCalHandler, detectFoodsCalorie};
+const getData = async (request, h) => {
+  const query = db.collection('food');
+  const snapshot = await query.orderBy('food').get();
+  snapshot.docs.forEach((doc) => {
+  // console.log(doc.data());
+    listfood.push(doc.data());
+  });
+  // const data = snapshot.docs.map((doc) => doc.data());
+  // listfood.push(data);
+  console.log(listfood);
+  const response = h.response({
+    listfood,
+  });
+  return response;
+};
+
+module.exports = {addCalHandler, detectFoodsCalorie, getData};

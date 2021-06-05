@@ -3,6 +3,7 @@ const Hapi = require('@hapi/hapi');
 const routes = require('./routes');
 // const admin = require('firebase-admin');
 
+
 const init = async () => {
   const server = Hapi.server({
     // port: 5000,
@@ -17,7 +18,6 @@ const init = async () => {
       },
     },
   });
-
   server.route(routes);
   await server.start();
   console.log(`Server berjalan pada ${server.info.uri}`);
