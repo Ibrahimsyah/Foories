@@ -15,4 +15,8 @@ class LocalDataSource(private val fooriesDao: FooriesDao) {
     }
 
     fun getUserTodayTotalCalories() = fooriesDao.getTodayTotalCalories()
+
+    fun getHistory7Days() = fooriesDao.getAWeekFood()
+
+    fun getHistory30Days() = fooriesDao.getAMonthFood()
 }

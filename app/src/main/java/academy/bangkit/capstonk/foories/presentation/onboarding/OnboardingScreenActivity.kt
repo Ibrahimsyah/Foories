@@ -32,6 +32,11 @@ class OnboardingScreenActivity : AppCompatActivity() {
                 "Monitor",
                 "Keep your daily calories consumption below the threshold, it will make your body healthy",
                 R.drawable.ic_analyze_calory
+            ),
+            OnboardingData(
+                "Trace",
+                "See your monthly food history by swiping the home screen to right",
+                R.drawable.ic_history
             )
         )
 

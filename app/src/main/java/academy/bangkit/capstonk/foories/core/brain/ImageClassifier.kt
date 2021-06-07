@@ -110,7 +110,7 @@ class ImageClassifier constructor(assetManager: AssetManager) {
                 )
             }
             val recognitions = ArrayList<Result>()
-            val recognitionsSize = Math.min(pq.size, MAX_RESULTS)
+            val recognitionsSize = pq.size.coerceAtMost(MAX_RESULTS)
             for (i in 0 until recognitionsSize) recognitions.add(pq.poll())
             emit(recognitions)
         }

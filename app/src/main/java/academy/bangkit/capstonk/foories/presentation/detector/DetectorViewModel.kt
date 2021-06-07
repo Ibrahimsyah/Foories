@@ -7,7 +7,6 @@ import academy.bangkit.capstonk.foories.core.domain.model.Food
 import academy.bangkit.capstonk.foories.core.domain.usecase.DetectorUseCase
 import academy.bangkit.capstonk.foories.core.util.Mapper
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

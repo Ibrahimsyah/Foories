@@ -6,7 +6,7 @@ import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 
-class LoadingDialog(private val activity: Activity) {
+class LoadingDialog(activity: Activity) {
     private var alertDialog: AlertDialog
     private var binding: LoadingIndicatorBinding
 

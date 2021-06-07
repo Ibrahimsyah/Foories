@@ -2,7 +2,7 @@ package academy.bangkit.capstonk.foories.presentation
 
 import academy.bangkit.capstonk.foories.core.config.Constants
 import academy.bangkit.capstonk.foories.databinding.ActivitySplashScreenBinding
-import academy.bangkit.capstonk.foories.presentation.main.MainActivity
+import academy.bangkit.capstonk.foories.presentation.home.HomeActivity
 import academy.bangkit.capstonk.foories.presentation.onboarding.OnboardingScreenActivity
 import academy.bangkit.capstonk.foories.presentation.screening.ScreeningActivity
 import android.content.Context
@@ -30,7 +30,7 @@ class SplashScreenActivity : AppCompatActivity() {
             if (!onboardingPref) OnboardingScreenActivity::class.java
             //User have not filled the Screening Form
             else if (!screeningPref) ScreeningActivity::class.java
-            else MainActivity::class.java
+            else HomeActivity::class.java
 
         Handler(mainLooper).postDelayed({
             startActivity(Intent(this, nextActivity))

@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.main.MainActivity"
+            android:name=".presentation.home.HomeActivity"
             android:theme="@style/MainTheme" />
 
         <provider

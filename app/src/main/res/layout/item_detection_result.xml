@@ -25,9 +25,9 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
     <TextView
+        android:id="@+id/food_calorie"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/food_calorie"
         app:layout_constraintTop_toBottomOf="@id/food_name"
         tools:text="Sample Calory"
         app:layout_constraintLeft_toRightOf="@id/radio"/>

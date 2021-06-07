@@ -1,23 +1,25 @@
-package academy.bangkit.capstonk.foories.presentation.main
+package academy.bangkit.capstonk.foories.presentation.home
 
 import academy.bangkit.capstonk.foories.R
 import academy.bangkit.capstonk.foories.core.config.Constants
 import academy.bangkit.capstonk.foories.core.ui.FoodAdapter
-import academy.bangkit.capstonk.foories.databinding.ActivityMainBinding
+import academy.bangkit.capstonk.foories.databinding.FragmentMainBinding
 import academy.bangkit.capstonk.foories.presentation.detector.DetectorActivity
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -30,34 +32,43 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class HomeFragment : Fragment() {
+
     companion object {
         const val REQUEST_CODE = 101
-        const val PICK_GALLERY = 102
     }
 
-    private val mainViewModel: MainViewModel by viewModel()
+    private val mainViewModel: HomeViewModel by viewModel()
+
     private lateinit var foodAdapter: FoodAdapter
+    private lateinit var binding: FragmentMainBinding
     private lateinit var photoPath: String
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentMainBinding.inflate(inflater)
+        return binding.root
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        foodAdapter = FoodAdapter(this)
-        val pref = getSharedPreferences(Constants.PREFS, Context.MODE_PRIVATE)
+
+        val context = binding.root.context
+        val pref = context.getSharedPreferences(Constants.PREFS, Context.MODE_PRIVATE)
         val userName = pref.getString(Constants.USER_FULL_NAME, "")
         val userCalorie = pref.getInt(Constants.USER_CALORIE, 0)
+        foodAdapter = FoodAdapter(binding.root.context)
 
         with(binding.rvFood) {
-            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = foodAdapter
         }
 
-        mainViewModel.getUserTodayTotalCalories().observe(this, {
+        mainViewModel.getUserTodayTotalCalories().observe(viewLifecycleOwner, {
             val calorie = it?.toInt() ?: 0
             val percentage = (calorie * 100 / userCalorie)
             binding.userName.text = userName
@@ -66,13 +77,13 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.calorie_progress, calorie, userCalorie)
             val progress = if (percentage >= 100) 75 else (0.75 * percentage).toInt()
             val colorId = if (percentage >= 100) R.color.light_red else R.color.primary
-            val color = ContextCompat.getColor(this, colorId)
+            val color = ContextCompat.getColor(context, colorId)
             binding.progressIndicator.progress = progress
             binding.percentage.setTextColor(color)
             binding.progressIndicator.setIndicatorColor(color)
         })
 
-        mainViewModel.getUserTodayFoods().observe(this, {
+        mainViewModel.getUserTodayFoods().observe(viewLifecycleOwner, {
             foodAdapter.foods = it
             binding.errorMessage.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
         })
@@ -88,14 +99,14 @@ class MainActivity : AppCompatActivity() {
                     p1: PermissionToken?
                 ) {
                     val message = "Camera must be allowed"
-                    Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                 }
             })
         }
     }
 
     private fun checkPermission(permissionListener: MultiplePermissionsListener) {
-        Dexter.withContext(this)
+        Dexter.withContext(requireActivity())
             .withPermissions(
                 Manifest.permission.CAMERA,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -104,10 +115,9 @@ class MainActivity : AppCompatActivity() {
             .withListener(permissionListener).check()
     }
 
-    @SuppressLint("QueryPermissionsNeeded")
     private fun takePhotoFromCamera() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            takePictureIntent.resolveActivity(packageManager)?.also {
+            takePictureIntent.resolveActivity(requireActivity().packageManager)?.also {
                 val photoFile: File? = try {
                     createImageFile()
                 } catch (ex: IOException) {
@@ -115,7 +125,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 photoFile?.also {
                     val photoURI: Uri = FileProvider.getUriForFile(
-                        this,
+                        requireActivity(),
                         "academy.bangkit.capstonk.foories.fileprovider",
                         it
                     )
@@ -126,24 +136,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            val intent = Intent(this, DetectorActivity::class.java)
-            intent.putExtra(DetectorActivity.IMAGE_PATH, photoPath)
-            startActivity(intent)
-        }
-    }
-
     private fun createImageFile(): File {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CANADA).format(Date())
-        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val storageDir: File? =
+            binding.root.context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(
             "JPEG_${timeStamp}_", /* prefix */
             ".jpg", /* suffix */
             storageDir /* directory */
         ).apply {
             photoPath = absolutePath
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE && resultCode == AppCompatActivity.RESULT_OK) {
+            val intent = Intent(context, DetectorActivity::class.java)
+            intent.putExtra(DetectorActivity.IMAGE_PATH, photoPath)
+            startActivity(intent)
         }
     }
 }

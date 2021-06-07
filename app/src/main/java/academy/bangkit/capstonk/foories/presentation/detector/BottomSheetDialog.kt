@@ -8,23 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomSheetDialog private constructor(
     private val supportFragmentManager: FragmentManager,
-    private val onCancel: () -> Unit,
-    private val viewModel: DetectorViewModel
+    private val onCancel: () -> Unit
 ) :
     BottomSheetDialogFragment() {
     companion object {
         fun getInstance(
             supportFragmentManager: FragmentManager,
-            viewModel: DetectorViewModel,
             onCancel: () -> Unit,
         ): BottomSheetDialog {
-            return BottomSheetDialog(supportFragmentManager, onCancel, viewModel)
+            return BottomSheetDialog(supportFragmentManager, onCancel)
         }
     }
 
@@ -51,7 +48,6 @@ class BottomSheetDialog private constructor(
         }
         binding.btnSubmit.setOnClickListener {
             val result = cb(adapter.selectedIndex)
-
             if (result) this.dismiss()
         }
     }

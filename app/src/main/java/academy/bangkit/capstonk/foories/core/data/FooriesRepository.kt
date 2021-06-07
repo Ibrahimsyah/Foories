@@ -1,6 +1,5 @@
 package academy.bangkit.capstonk.foories.core.data
 
-import academy.bangkit.capstonk.foories.core.util.Mapper
 import academy.bangkit.capstonk.foories.core.data.source.local.LocalDataSource
 import academy.bangkit.capstonk.foories.core.data.source.remote.RemoteDataSource
 import academy.bangkit.capstonk.foories.core.data.source.remote.entity.FoodCaloriesPayload
@@ -9,6 +8,7 @@ import academy.bangkit.capstonk.foories.core.domain.model.Calories
 import academy.bangkit.capstonk.foories.core.domain.model.Food
 import academy.bangkit.capstonk.foories.core.domain.model.User
 import academy.bangkit.capstonk.foories.core.domain.repository.IFooriesRepository
+import academy.bangkit.capstonk.foories.core.util.Mapper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 
@@ -23,6 +23,18 @@ class FooriesRepository(
 
     override fun getUserTodayFoods(): LiveData<List<Food>> {
         return Transformations.map(localDataSource.getUserTodayFoods()) {
+            Mapper.foodEntitiesToDomains(it)
+        }
+    }
+
+    override fun getHistory7Days(): LiveData<List<Food>> {
+        return Transformations.map(localDataSource.getHistory7Days()) {
+            Mapper.foodEntitiesToDomains(it)
+        }
+    }
+
+    override fun getHistory30Days(): LiveData<List<Food>> {
+        return Transformations.map(localDataSource.getHistory30Days()) {
             Mapper.foodEntitiesToDomains(it)
         }
     }

@@ -29,7 +29,7 @@ class DetectorActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadingDialog = LoadingDialog(this)
-        bottomSheetDialog = BottomSheetDialog.getInstance(supportFragmentManager, viewModel) {
+        bottomSheetDialog = BottomSheetDialog.getInstance(supportFragmentManager) {
             finish()
         }
 

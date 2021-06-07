@@ -5,7 +5,7 @@
     <string name="next">Next</string>
     <string name="skip">Skip</string>
     <string name="full_name">Full name</string>
-    <string name="weigth">Weight (Kg)</string>
+    <string name="weight">Weight (Kg)</string>
     <string name="height">Height (Cm)</string>
     <string name="age">Age</string>
     <string name="submit">Submit</string>
@@ -31,4 +31,6 @@
     <string name="food_image">Food Image</string>
     <string name="food_detector">Food Detector</string>
     <string name="detection_result">Detection Result</string>
+    <string name="foories_logo">Foories Logo</string>
+    <string name="history">History</string>
 </resources>
