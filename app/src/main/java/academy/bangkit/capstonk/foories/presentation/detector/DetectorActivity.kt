@@ -65,14 +65,16 @@ class DetectorActivity : AppCompatActivity() {
                 Toast.makeText(this, "Can't send to server", Toast.LENGTH_SHORT).show()
             } else {
                 bottomSheetDialog.showResult(it) { foodIndex ->
-                    if (foodIndex != -1) {
+                    return@showResult if (foodIndex != -1) {
                         val selectedFood = Mapper.detectionResultToFood(it[foodIndex])
                         viewModel.saveFood(selectedFood)
                         Toast.makeText(this, "Food Added", Toast.LENGTH_SHORT).show()
                         finish()
+                        true
+                    } else {
+                        Toast.makeText(this, "Please choose first", Toast.LENGTH_SHORT).show()
+                        false
                     }
-                    Toast.makeText(this, "Please choose first", Toast.LENGTH_SHORT).show()
-                    false
                 }
             }
         })
