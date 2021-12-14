@@ -18,7 +18,7 @@ class DetectorInteractor(
     }
 
     override suspend fun detectFoodsCalorie(payload: FoodCaloriesPayload): DetectionResponse {
-        return repository.detectFoodCalories(payload)
+        return repository.detectFoodCaloriesLocal(payload)
     }
 
     override suspend fun insertFood(food: Food) {

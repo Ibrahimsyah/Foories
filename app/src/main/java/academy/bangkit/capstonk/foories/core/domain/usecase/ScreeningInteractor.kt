@@ -6,6 +6,6 @@ import academy.bangkit.capstonk.foories.core.domain.repository.IFooriesRepositor
 
 class ScreeningInteractor(private val repository: IFooriesRepository) : ScreeningUseCase {
     override suspend fun getUserCalories(user: User): Calories {
-        return repository.getUserCalories(user)
+        return repository.getUserCaloriesLocal(user)
     }
 }

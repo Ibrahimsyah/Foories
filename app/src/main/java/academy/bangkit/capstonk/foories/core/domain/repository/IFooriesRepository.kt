@@ -9,10 +9,12 @@ import androidx.lifecycle.LiveData
 
 interface IFooriesRepository {
     suspend fun getUserCalories(user: User): Calories
+    fun getUserCaloriesLocal(user: User): Calories
     fun getUserTodayFoods(): LiveData<List<Food>>
     fun getHistory7Days(): LiveData<List<Food>>
     fun getHistory30Days(): LiveData<List<Food>>
     fun getUserTodayTotalCalories(): LiveData<Double>
     suspend fun insertFood(food: Food)
     suspend fun detectFoodCalories(foodCaloriesPayload: FoodCaloriesPayload): DetectionResponse
+    fun detectFoodCaloriesLocal (foodCaloriesPayload: FoodCaloriesPayload): DetectionResponse
 }
